@@ -39,6 +39,7 @@ export const styles = StyleSheet.create({
     customText: {
         fontFamily: 'JotiOne-Regular',
         fontSize: 17,
-        color: '#ffffff'
+        color: '#ffffff',
+        opacity: 0.7
     }
 })
