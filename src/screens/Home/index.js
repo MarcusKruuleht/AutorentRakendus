@@ -1,19 +1,77 @@
 import React from 'react';
-import { SafeAreaView, View, Image, Text } from 'react-native';
+import { SafeAreaView, ScrollView, View, Image, Text, TouchableOpacity } from 'react-native';
 import HomeHeader from '../../components/home_header';
+import brands from '../../data/brands'; // Adjust the import path as needed
+import CarItem from '../../components/CarItem';
+import { cars } from '../../data/cars';
+
 import { styles } from './styles'; // Import styles from styles.js
-import { colors } from '../../utils/colors';
 
 const Home = () => {
+  // Rendering function for each brand
+  const renderBrandItem = (brand, index) => {
+    let customStyle = {};
+  
+    return (
+      <View style={styles.brandContainer} key={brand.id}>
+        <View style={[styles.brandItem, customStyle]}>
+          <View style={styles.logoContainer}>
+            <Image source={brand.logo} style={styles.brandLogo} resizeMode="contain" />
+          </View>
+        </View>
+        <Text style={styles.brandName}>{brand.name}</Text>
+      </View>
+    );
+  };
+
+  // Rendering function for each car
+  const renderCarItem = (car) => {
+    return (
+      <View style={styles.carItemContainer} key={car.id}>
+        <CarItem
+          model={car.model}
+          brand={car.brand}
+          image={car.image}
+          price={car.price}
+          onPress={() => console.log('Car pressed:', car.model)}
+        />
+      </View>
+    );
+  };
+
+  const handleSeeAllPress = () => {
+    // Add your logic here
+    console.log('Vaata kõiki clicked');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      {/* Search Container */}
-      <HomeHeader />
+      <ScrollView style={styles.scrollView}>
+        {/* HomeHeader Component */}
+        <HomeHeader />
 
-      {/* Main Content */}
-      <View style={styles.content}>
-        {/* Add your main content here */}
-      </View>
+        {/* Main Content */}
+        <View style={styles.mainContent}>
+          <View style={styles.brandHeaderContainer}>
+            <Text style={styles.brandHeaderText}>Brändid</Text>
+            <TouchableOpacity onPress={handleSeeAllPress}>
+              <Text style={styles.seeAllText}>Vaata kõiki</Text>
+            </TouchableOpacity>
+          </View>
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false} 
+            contentContainerStyle={styles.scrollViewContentContainer}
+          >
+            {brands.map((brand, index) => renderBrandItem(brand, index))}
+          </ScrollView>
+
+          {/* Car Items */}
+          <View style={styles.carItemsContainer}>
+            {cars.map((car) => renderCarItem(car))}
+          </View>
+        </View>
+      </ScrollView>
 
       {/* Footer */}
       <View style={styles.footer}>

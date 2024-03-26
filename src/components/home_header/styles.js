@@ -11,20 +11,21 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
-    borderRadius: 5,
+    borderRadius: 10,
     paddingHorizontal: 10,
+    marginTop: 40
   },
-  iconContainer: {
-    marginRight: 10,
-  },
+
   icon: {
     width: 20,
     height: 20,
     resizeMode: 'contain',
+    marginRight: 7
   },
   input: {
     flex: 1,
     paddingVertical: 10,
-    fontFamily: 'JotiOne-Regular'
+    fontFamily: 'JotiOne-Regular',
+    fontSize: 18
   },
 });
