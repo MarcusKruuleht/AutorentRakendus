@@ -75,12 +75,14 @@ export const styles = StyleSheet.create({
     color: 'black',
     fontFamily: 'JotiOne-Regular',
     fontSize: 18,
+    marginTop: 4
   },
   seeAllText: {
     color: '#464444',
     fontFamily: 'JotiOne-Regular',
     fontSize: 12,
     marginRight: 10,
+    marginTop: 4
   },
 
   carItemsContainer: {
