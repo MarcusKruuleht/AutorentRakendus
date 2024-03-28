@@ -1,27 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, ScrollView, View, Image, Text, TouchableOpacity } from 'react-native';
 import HomeHeader from '../../components/home_header';
 import brands from '../../data/brands'; // Adjust the import path as needed
 import CarItem from '../../components/CarItem';
-import { cars } from '../../data/cars';
+import { cars as allCars } from '../../data/cars';
 
 import { styles } from './styles'; // Import styles from styles.js
 
 const Home = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedBrand, setSelectedBrand] = useState(null);
+  const [filteredCars, setFilteredCars] = useState(allCars);
+
+  // Function to handle search input change
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    // Clear the selected brand
+    setSelectedBrand(null);
+    // Filter cars based on search query
+    const filtered = allCars.filter(car => 
+      car.model.toLowerCase().includes(query.toLowerCase()) ||
+      car.brand.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredCars(filtered);
+  };
+
+  // Function to handle brand logo press
+  const handleBrandPress = (brandName) => {
+    setSelectedBrand(brandName);
+    // Filter cars for the selected brand
+    const brandCars = allCars.filter(car => car.brand.toLowerCase() === brandName.toLowerCase());
+    if (brandCars.length === 0) {
+      // If no cars available for the selected brand, display a message
+      setFilteredCars([]);
+    } else {
+      // If cars available for the selected brand, display them
+      setFilteredCars(brandCars);
+    }
+  };
+
   // Rendering function for each brand
   const renderBrandItem = (brand, index) => {
-    let customStyle = {};
-  
+    const isSelected = selectedBrand === brand.name;
     return (
-      <View style={styles.brandContainer} key={brand.id}>
-        <View style={[styles.brandItem, customStyle]}>
+      <TouchableOpacity
+        key={brand.id}
+        style={[styles.brandContainer, isSelected && styles.selectedBrandContainer]}
+        onPress={() => handleBrandPress(brand.name)}
+      >
+        <View style={[styles.brandItem, isSelected && styles.selectedBrandItem]}>
           <View style={styles.logoContainer}>
             <Image source={brand.logo} style={styles.brandLogo} resizeMode="contain" />
           </View>
         </View>
-        <Text style={styles.brandName}>{brand.name}</Text>
-      </View>
+        <Text style={[styles.brandName, isSelected && styles.selectedBrandName]}>{brand.name}</Text>
+      </TouchableOpacity>
     );
+  };
+
+  // Function to handle "Vaata kõiki" press
+  const handleSeeAllPress = () => {
+    // Clear the selected brand
+    setSelectedBrand(null);
+    // Reset filtered cars to all cars
+    setFilteredCars(allCars);
+    // Clear search query
+    setSearchQuery('');
   };
 
   // Rendering function for each car
@@ -39,23 +83,18 @@ const Home = () => {
     );
   };
 
-  const handleSeeAllPress = () => {
-    // Add your logic here
-    console.log('Vaata kõiki clicked');
-  };
-
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>
+      <ScrollView>
         {/* HomeHeader Component */}
-        <HomeHeader />
+        <HomeHeader onSearchKeyword={handleSearch} keyword={searchQuery} />
 
         {/* Main Content */}
         <View style={styles.mainContent}>
           <View style={styles.brandHeaderContainer}>
             <Text style={styles.brandHeaderText}>Brändid</Text>
             <TouchableOpacity onPress={handleSeeAllPress}>
-              <Text style={styles.seeAllText}>Vaata kõiki</Text>
+              <Text style={[styles.seeAllText, !selectedBrand && styles.underline]}>Vaata kõiki</Text>
             </TouchableOpacity>
           </View>
           <ScrollView 
@@ -68,7 +107,11 @@ const Home = () => {
 
           {/* Car Items */}
           <View style={styles.carItemsContainer}>
-            {cars.map((car) => renderCarItem(car))}
+            {filteredCars.length > 0 ? (
+              filteredCars.map((car) => renderCarItem(car))
+            ) : (
+              <Text style={styles.noCarsMessage}>Sorry, soon adding more cars</Text>
+            )}
           </View>
         </View>
       </ScrollView>

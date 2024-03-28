@@ -33,7 +33,27 @@ export const cars = [
       },
       {
         id: 4,
-        model: ''
+        model: 'Panda',
+        brand: 'FIAT',
+        image: require('../cars/fiat/fiat.png'),
+        category: 4,
+        price: '10€ päev'
+      },
+      {
+        id: 5,
+        model: '5. seeria',
+        brand: 'BMW',
+        image: require('../cars/bmw/bmw.png'),
+        category: 5,
+        price: '20€ päev'
+      },
+      {
+        id: 6,
+        model: 'S-klass',
+        brand: 'Mercedes',
+        image: require('../cars/mercedes/mercedes.png'),
+        category: 6,
+        price: '20€ päev'
       }
  
 

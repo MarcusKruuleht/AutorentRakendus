@@ -32,14 +32,16 @@ export const styles = StyleSheet.create({
   },
   brandContainer: {
     marginBottom: 25,
+    paddingLeft: 10
   },
   brandItem: {
     backgroundColor: 'white',
     borderRadius: 5,
     padding: 8, // Adjust padding to make the box shorter
-    marginRight: 21,
     alignItems: 'center', // Center content horizontally
-    justifyContent: 'center', // Center content vertically
+    justifyContent: 'center',
+    marginRight: 10,
+    marginLeft: 5,
   },
   logoContainer: {
     alignItems: 'center',
@@ -53,8 +55,13 @@ export const styles = StyleSheet.create({
     color: 'black',
     fontSize: 12,
     textAlign: 'center', // Center text horizontally
-    marginTop: 5, // Adjust the spacing between the logo and the name
+    marginTop: 2, // Adjust the spacing between the logo and the name
     maxWidth: 60, // Limit the width to prevent overflowing
+    marginLeft: 5,
+  },
+  selectedBrandName: {
+    textDecorationLine: 'underline',
+     // Underline style for selected brand name
   },
   
   brandHeaderContainer: {
@@ -62,7 +69,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 10,
-    marginLeft: 10
+    marginLeft: 10,
   },
   brandHeaderText: {
     color: 'black',
@@ -73,17 +80,20 @@ export const styles = StyleSheet.create({
     color: '#464444',
     fontFamily: 'JotiOne-Regular',
     fontSize: 12,
-    marginRight: 10
+    marginRight: 10,
   },
 
   carItemsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap', // Wrap items to next row when they don't fit in the current row
     justifyContent: 'space-between', // Space between items
-    paddingHorizontal: 10, // Add padding horizontally
+    paddingHorizontal: 10,
   },
   carItemContainer: {
-    width: '48%', // Set width to half of the container width (2 cars in a row)
-    marginBottom: 10, // Add margin to separate rows
+    width: '50%', // Set width to half of the container width (2 cars in a row)
+    marginBottom: 29, // Add margin to separate rows
+  },
+  scrollViewContentContainer: {
+    paddingRight: 10, // Adjust this value as needed
   },
 });
