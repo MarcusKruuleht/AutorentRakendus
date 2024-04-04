@@ -6,6 +6,11 @@ export const cars = [
       image: require('../cars/audi/audi.png'), // Replace '../path/to/your/image.jpg' with the actual path to your image
       category: 1,
       price: '15€ päev',
+      year: '1982',
+      motor: '2.1',
+      fuel: 'Bensiin',
+      gearbox: 'Manuaal',
+      power: '100'
     },
     {
         id: 1,
@@ -14,6 +19,7 @@ export const cars = [
         image: require('../cars/volkswagen/volkswagen2.png'), // Replace '../path/to/your/image.jpg' with the actual path to your image
         category: 2,
         price: '20€ päev',
+        motor: '1.6 TD',
       },
       {
         id: 2,

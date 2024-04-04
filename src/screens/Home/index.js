@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, View, Image, Text, TouchableOpacity } from 'react-native';
+import { SafeAreaView, ScrollView, View, Image, Text, TouchableOpacity, FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import HomeHeader from '../../components/home_header';
 import brands from '../../data/brands'; // Adjust the import path as needed
 import CarItem from '../../components/CarItem';
 import { cars as allCars } from '../../data/cars';
+import CarDetails from '../CarDetails';
 
 import { styles } from './styles'; // Import styles from styles.js
 
@@ -70,15 +72,16 @@ const Home = () => {
 
   // Rendering function for each car
   const renderCarItem = (car) => {
+    const navigation = useNavigation();
+
     return (
       <View style={styles.carItemContainer} key={car.id}>
-        <CarItem
-          model={car.model}
-          brand={car.brand}
-          image={car.image}
-          price={car.price}
-          onPress={() => console.log('Car pressed:', car.model)}
-        />
+        <TouchableOpacity onPress={() => navigation.navigate('CarDetails', { car })}>
+          <Image source={car.image} style={styles.image}/>
+          <Text style={styles.model}>{car.model}</Text>
+          <Text style={styles.brand}>{car.brand}</Text>
+          <Text style={styles.price}>{car.price}</Text>
+        </TouchableOpacity>
       </View>
     );
   };

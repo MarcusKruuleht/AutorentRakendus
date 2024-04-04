@@ -92,8 +92,40 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   carItemContainer: {
-    width: '50%', // Set width to half of the container width (2 cars in a row)
     marginBottom: 29, // Add margin to separate rows
+    backgroundColor: colors.white,
+    marginLeft: 17,
+    marginRight: 17,
+    padding: 1, // Add padding to ensure the white background is visible
+    borderRadius: 5, // Add borderRadius for rounded corners
+    width: '38.3%',
+  },
+  model: {
+      color: colors.grey,
+      fontSize: 18,
+      fontFamily: 'JotiOne-Regular',
+      marginBottom: -8,
+      marginLeft: 4
+  },
+  image: {
+      width: 110,
+      height: 140,
+      marginLeft: 16,
+      marginBottom: 7,
+      marginTop: -13
+  },
+  brand: {
+      color: colors.black,
+      fontSize: 18,
+      marginTop: 1,
+      fontFamily: 'JotiOne-Regular',
+      marginLeft: 4
+  },
+  price: {
+      color: colors.black,
+      fontSize: 25,
+      fontFamily: 'JotiOne-Regular',
+      marginLeft: 4
   },
   scrollViewContentContainer: {
     paddingRight: 10, // Adjust this value as needed
